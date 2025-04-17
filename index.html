@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>MobiGenie - Your Shopping Buddy</title>
+    
+        <!-- Google Fonts: Anton and Bebas Neue -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+
+    
+        <style>
+            body {
+                font-family: 'poppins', sans-serif;
+                margin: 0;
+                padding: 20px;
+                background-color: #f9f9f9;
+            }
+            header {
+                background: linear-gradient(90deg, #7c5204,#89580e,#c38221 );
+                background-color: #333;
+                color: rgb(240, 197, 118);
+                padding: 20px;
+                text-align: center;
+                border-radius: 10px;
+                margin-bottom: 20px;
+                display: flex;
+                align-items: center;
+                justify-content: center; /* Center the heading */
+                position: relative;
+            }
+            
+            .logo {
+                position: absolute;
+                top: 10px;
+                left: 20px;
+                border-radius: 50%;
+                width: 70px;
+                height: 70px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+            }
+            
+            .logo img {
+                width: 100%;
+                height: 100%;
+                border-radius: 50%;
+            }
+            .anton-regular {
+                font-family: "Anton", sans-serif;
+                font-weight: 400;
+                font-style: normal;
+                font-size: 2em;
+                color: white;
+            }
+            .bebas-bold {
+                font-family: "Bebas Neue", sans-serif;
+                font-weight: 400;
+                font-style: normal;
+            }
+            textarea, input {
+                width: 100%;
+                padding: 10px;
+                margin-top: 10px;
+                font-size: 1em;
+            }
+            button {
+                padding: 10px 20px;
+                margin-top: 10px;
+                font-size: 1em;
+                cursor: pointer;
+                background-color:#986507;
+                color: white;
+                border: none;
+                border-radius: 5px;
+            }
+            button:hover {
+                background-color:rgb(71, 48, 6);
+            }
+            
+            .response {
+                background: #f0f0f0;
+                padding: 10px;
+                white-space: pre-wrap;
+                border-radius: 5px;
+                margin-top: 10px;
+            }
+            .container {
+                max-width: 600px;
+                margin: auto;
+                background-color: #fff;
+                padding: 20px;
+                border-radius: 12px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            }
+            h2 {
+                font-family: 'Poppins', sans-serif;
+                font-size: 24px;
+                color: rgb(91, 61, 7);
+                margin-bottom: 10px;
+            }
+            input[type="text"] {
+                font-family: 'Poppins', sans-serif;
+                font-size: 16px;
+                padding: 12px;
+                margin: 10px 0;
+                width: calc(100% - 24px);
+                border: 2px solid #c0c0c0;
+                border-radius: 8px;
+                transition: all 0.3s ease;
+                box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+    
+            input[type="text"]:focus {
+                outline: none;
+                border-color: #a16e22;
+                box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.2);
+            }   
+            textarea {
+                font-family: 'Poppins', sans-serif;
+                font-size: 16px;
+                padding: 12px;
+                margin: 10px 0;
+                width: calc(100% - 24px); /* Adjusted width to fit inside the padding */
+                border: 2px solid #c0c0c0;
+                border-radius: 8px;
+                transition: all 0.3s ease;
+                box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+                resize: none; /* Prevents resizing */
+            }  
+            .product-card {
+                border: 2px solid #986507; /* Adding a border with the specified color */
+                border-radius: 20px;
+                background-color: white;
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+                padding: 20px;
+                margin: 20px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 20px;
+            }
+            
+            
+            
+            .product-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+            }
+            .product-title {
+                font-weight: bold;
+                font-size: 24px; /* Increased font size */
+                margin-bottom: 10px;
+                color: #333;
+            }
+            
+            .product-details {
+                flex: 1;
+                padding: 20px;
+            }
+            
+            .product-price {
+                font-size: 26px;
+                color: #e91e63;
+                font-weight: bold;
+            }
+            
+            .product-rating {
+                display: flex;
+                align-items: center;
+                margin: 10px 0;
+            }
+            .star-icon {
+                color: gold;
+                margin-right: 2px;
+                font-size: 22px;
+            }
+            .product-image {
+                width: 300px; /* Slightly bigger image */
+                height: auto;
+                border-radius: 15px;
+                object-fit: cover;
+                margin-left: 20px;
+            }
+            .product-description {
+                font-size: 18px; /* Increased description font size */
+                line-height: 1.4;
+                margin-top: 12px;
+            }
+            
+            .product-image:hover {
+                transform: scale(1.05);
+            }
+            .action-buttons {
+                margin-top: 15px;
+                display: flex;
+                justify-content: space-between;
+            }    
+            .button {
+                background-color: #4caf50;
+                color: white;
+                padding: 10px 20px;
+                margin: 5px;
+                border: none;
+                border-radius: 8px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+            .price-section {
+                display: flex;
+                align-items: center;
+                gap: 5px;
+                margin: 10px 0;
+            }
+            
+            .button:hover {
+                background-color: #45a049;
+            }        
+
+            img {
+                max-width: 150px;
+                border-radius: 5px;
+            }
+            .section-title {
+                font-weight: bold !important;
+                font-size: 28px !important;
+                color: #5a3b12 !important;
+                margin-bottom: 10px !important;
+                font-family: 'Arial', sans-serif !important;
+            } 
+        </style>
+    </head>
+    <body>
+        <header class="bebas-bold">
+            <div class="logo">
+                <img src="static\logo.jpeg" alt="MobiGenie Logo">
+            </div>
+            <h1>MobiGenie - Your Shopping Buddy </h1>
+        </header>
+    </body>
+
+    <!-- Section 1: Greeting -->
+    <div class="section">
+        <h2>Enter Your Name</h2>
+        <input type="text" id="nameInput" placeholder="Your name...">
+        <button onclick="greetUser()">Greet Me</button>
+        <div id="greetResponse" class="response"></div>
+    </div>
+
+    <!-- Section 2: Chat with Bot -->
+    <div class="section">
+        <h2>Chat with MobiGenie</h2>
+        <textarea id="chatInput" rows="3" placeholder="Ask me anything..."></textarea>
+        <button onclick="askMistral()">Send</button>
+        <div id="chatResponse" class="response"></div>
+    </div>
+
+    <!-- Section 3: Product Details -->
+    <div class="section">
+        <h2 class="section-title">Get Product Details</h2>
+        <input type="text" id="modelInput" placeholder="Enter model name...">
+        <button onclick="getModelDetails()">Get Details</button>
+        
+        <div class="response">
+            <h2 class="section-title">Selected Product:</h2>
+            <div id="modelDetails" class="response">Waiting for input...</div>
+        </div>
+
+        <div class="response">
+            <h2 class="section-title">Similar Products:</h2>
+            <div id="recommendations">Waiting for product...</div>
+        </div>
+
+        <div class="response">
+            <h2 class="section-title">Recommended Accessories:</h2>
+            <div id="accessories">Waiting for product...</div>
+        </div>
+    </div>
+
+    <script>
+        async function greetUser() {
+            const name = document.getElementById('nameInput').value.trim();
+            if (!name) {
+                document.getElementById('greetResponse').innerText = "Please enter your name.";
+                return;
+            }
+
+            try {
+                const res = await fetch('http://127.0.0.1:8000/greet_user', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name })
+                });
+                const data = await res.json();
+                document.getElementById('greetResponse').innerText = data.response || data.error;
+            } catch (err) {
+                console.error("Greet fetch error:", err);
+                document.getElementById('greetResponse').innerText = "Server error while greeting.";
+            }
+        }
+
+        async function askMistral() {
+            const query = document.getElementById('chatInput').value.trim();
+            if (!query) {
+                document.getElementById('chatResponse').innerText = "Please enter a question.";
+                return;
+            }
+
+            try {
+                const res = await fetch('http://127.0.0.1:8000/ask_mistral', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ query })
+                });
+                const data = await res.json();
+                document.getElementById('chatResponse').innerText = data.response || data.error;
+            } catch (err) {
+                console.error("Chat fetch error:", err);
+                document.getElementById('chatResponse').innerText = "Server error while chatting.";
+            }
+        }
+
+        async function getModelDetails() {
+            const model = document.getElementById('modelInput').value.trim();
+            if (!model) {
+                document.getElementById('modelDetails').innerText = "Please enter a model name.";
+                return;
+            }
+
+            // Show loading...
+            document.getElementById('modelDetails').innerText = "Loading...";
+            document.getElementById('recommendations').innerText = "Loading...";
+            document.getElementById('accessories').innerText = "Loading...";
+
+            try {
+                const res = await fetch('http://127.0.0.1:8000/get_model_details', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ model })
+                });
+
+                if (!res.ok) {
+                    throw new Error(`Server returned ${res.status}`);
+                }
+
+                const data = await res.json();
+                console.log("Model input:", model);
+                console.log("Data received:", data);
+
+                if (data.error) {
+                    document.getElementById('modelDetails').innerText = data.error;
+                    document.getElementById('recommendations').innerText = "No similar products.";
+                    document.getElementById('accessories').innerText = "No accessories.";
+                    return;
+                }
+
+                const main = data.response;
+                document.getElementById('modelDetails').innerHTML = `
+                    <div class="product-card">
+                        <strong>${main.title}</strong><br>
+                        Price: ₹${main.price}<br>
+                        Rating: ${main.stars} (${main.rating}, ${main.review_count} reviews)<br>
+                        <img src="${main.image_url}" alt="Product Image">
+                    </div>
+                `;
+
+                const recHTML = (data.similar_products || []).map(p => `
+                    <div class="product-card">
+                        <strong>${p.brand_type}: ${p.title}</strong><br>
+                        Price: ₹${p.price}<br>
+                        Rating: ${p.stars} (${p.rating}, ${p.review_count} reviews)<br>
+                        <img src="${p.image_url}" alt="Recommendation">
+                    </div>
+                `).join("") || "<p>No similar products found.</p>";
+                document.getElementById('recommendations').innerHTML = recHTML;
+
+                const accHTML = (data.accessories || []).map(p => `
+                    <div class="product-card">
+                        <strong>${p.accessory_type}: ${p.title}</strong><br>
+                        Price: ₹${p.price}<br>
+                        Rating: ${p.stars} (${p.rating}, ${p.review_count} reviews)<br>
+                        <img src="${p.image_url}" alt="Accessory">
+                    </div>
+                `).join("") || "<p>No accessories found.</p>";
+                document.getElementById('accessories').innerHTML = accHTML;
+
+            } catch (err) {
+                console.error("Fetch error:", err);
+                document.getElementById('modelDetails').innerText = "Failed to fetch product details.";
+                document.getElementById('recommendations').innerText = "No similar products.";
+                document.getElementById('accessories').innerText = "No accessories.";
+            }
+        }
+    </script>
+</body>
+</html>
